@@ -30,11 +30,22 @@ class ImagesInfo extends Component {
     }
  
     if (prevPage !== nextPage && prevPage < nextPage) {
-      this.renderNewRequestKey(nextName, nextPage)
+      this.renderMorePages(nextName, nextPage)
     }
   };
 
   renderNewRequestKey = (nextName, nextPage) => {
+    this.setState({ status: 'pending' });
+
+    pixabayApi
+      .fetchImages(nextName, nextPage)
+      .then(response => this.setState({images: response.hits}))
+      .catch(error => this.setState({ error, status: 'rejected' }))
+      .finally(() => this.setState({ status: 'resolved' }));    
+  };
+
+
+  renderMorePages = (nextName, nextPage) => {
     this.setState({ status: 'pending' });
 
     pixabayApi
