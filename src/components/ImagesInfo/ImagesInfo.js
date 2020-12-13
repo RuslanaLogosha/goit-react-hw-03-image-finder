@@ -36,8 +36,8 @@ class ImagesInfo extends Component {
 
   renderNewRequestKey = (nextName)=> {
     this.setState({ status: 'pending' });
-    this.setState({ images: []});
     let nextPage = 1;
+    
     pixabayApi
       .fetchImages(nextName, nextPage)
       .then(response => this.setState({images: response.hits}))
