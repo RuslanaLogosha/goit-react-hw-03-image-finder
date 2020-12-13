@@ -19,12 +19,10 @@ class ImagesInfo extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const images = this.state.images;
     const prevName = prevProps.requestKey;
     const nextName = this.props.requestKey;
     const prevPage = prevState.page;
     const nextPage = this.state.page;
-    // console.log('обновился')
 
     if (prevName !== nextName) {
       this.setState({ page: 1 });
@@ -34,12 +32,6 @@ class ImagesInfo extends Component {
     if (prevPage !== nextPage && prevPage < nextPage) {
       this.renderNewRequestKey(nextName, nextPage)
     }
-        
-    prevState.images.length !== images.length &&
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
   };
 
   renderNewRequestKey = (nextName, nextPage) => {
