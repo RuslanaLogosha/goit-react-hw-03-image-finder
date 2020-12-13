@@ -25,8 +25,8 @@ class ImagesInfo extends Component {
     const nextPage = this.state.page;
 
     if (prevName !== nextName) {
-      this.setState({ page: 1 });
-      this.renderNewRequestKey(nextName,nextPage);
+      this.setState({ images: [], error: null});
+      this.renderNewRequestKey(nextName, nextPage);
     }
  
     if (prevPage !== nextPage && prevPage < nextPage) {
@@ -34,9 +34,10 @@ class ImagesInfo extends Component {
     }
   };
 
-  renderNewRequestKey = (nextName, nextPage) => {
+  renderNewRequestKey = (nextName)=> {
     this.setState({ status: 'pending' });
-
+    this.setState({ images: []});
+    let nextPage = 1;
     pixabayApi
       .fetchImages(nextName, nextPage)
       .then(response => this.setState({images: response.hits}))
