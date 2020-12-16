@@ -26,6 +26,13 @@ img {
   height: auto;
 }
 
+.welcomeText {
+  text-align: center;
+  color: #303f9f;
+  font-size: large;
+  font-family: cursive;
+}
+
 /*
  * Стили компонента App
  */
